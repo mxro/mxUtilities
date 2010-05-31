@@ -2,10 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.mxro.utils</groupId>
   <artifactId>mxUtilities</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <name>MxUtilities</name>
+  <version>0.0.1</version>
+  <description>General utility classes</description>
+  <url>http://www.mxro.de/</url>
   <scm>
-  	<connection>scm:svn:http://myserver/myproject/svn/trunk/</connection>
-  	<developerConnection>scm:svn:http://myserver/myproject/svn/trunk/</developerConnection>
+  	<connection>scm:svn:https://mroh004:auckland10@stf-6121-dsk06.com.auckland.ac.nz/svn/MxModules/mxUtilities/trunk/</connection>
+  	<developerConnection>scm:svn:https://mroh004:auckland10@stf-6121-dsk06.com.auckland.ac.nz/svn/MxModules/mxUtilities/trunk/</developerConnection>
   </scm>
   <build>
   	
@@ -20,6 +23,15 @@
   	
   	
   	<plugins>
+      
+      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                        <tagBase>svn:https://mroh004:auckland10@stf-6121-dsk06.com.auckland.ac.nz/svn/MxModules/mxUtilities/tags</tagBase>
+                        <scmCommentPrefix>release: </scmCommentPrefix>
+                </configuration>
+        </plugin>
       
       <plugin>
       	<groupId>org.apache.maven.plugins</groupId>
