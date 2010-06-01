@@ -3,7 +3,7 @@
   <groupId>de.mxro.utils</groupId>
   <artifactId>mxUtilities</artifactId>
   <name>MxUtilities</name>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <description>General utility classes</description>
   <url>http://www.mxro.de/</url>
   <scm>
