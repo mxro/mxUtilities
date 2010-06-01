@@ -19,6 +19,11 @@
   			<filtering>false</filtering>
   			<directory>OSGI-INF</directory>
   		</resource>
+                <resource>
+  			<targetPath>META-INF/MANIFEST.MF</targetPath>
+  			<filtering>false</filtering>
+  			<directory>META-INF</directory>
+  		</resource>
   	</resources>
   	
   	
