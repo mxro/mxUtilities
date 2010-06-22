@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: mxUtilities
-Bundle-SymbolicName: de.mxro.utils
+Bundle-SymbolicName: mxUtilities;singleton:=true
 Bundle-Version: 0.0.2.SNAPSHOT
 Import-Package: org.osgi.framework;version="1.3.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -20,3 +20,4 @@ Export-Package: de.mxro.filesystem,
  de.mxro.utils.history,
  de.mxro.utils.log,
  de.mxro.utils.progress
+Bundle-ClassPath: .
