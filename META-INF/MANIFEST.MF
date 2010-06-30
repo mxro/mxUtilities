@@ -20,7 +20,7 @@ Bundle-Name: mxUtilities
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.6.0_20
 Bundle-Version: 0.0.4.SNAPSHOT
-Bnd-LastModified: 1277785659395
+Bnd-LastModified: 1277934195964
 Bundle-ManifestVersion: 2
 Bundle-Description: General utility classes
 Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=

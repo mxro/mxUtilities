@@ -1,110 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.mxro.utils</groupId>
-  <artifactId>mxUtilities</artifactId>
-  <name>mxUtilities</name>
-  <version>0.0.4-SNAPSHOT</version>
-  <description>General utility classes</description>
-  <url>http://www.mxro.de/</url>
-  <packaging>bundle</packaging>
-  
-  <build>
-  	
-  	
-   	<!-- Resources -->
-    <resources>
-			<!-- This entry makes sure that resources, which lie in the same package as
-			     Java classes, are copied into the target. Often external libraries
-			     require resources, which are loaded using Class.getResource or
-			     Class.getResourceAsStream and which are in a subpackage of the class.
-			     For instance, the NetBeans template for the Swing Application Framework
-			     does so.  -->
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes> 
-			</resource>
-			<!-- This entry makes sure component definitions for OSGi declarative services
-			     are copied into the destination  -->
-			<resource>
-				<targetPath>OSGI-INF</targetPath>
-				<filtering>false</filtering>
-				<directory>OSGI-INF</directory>
-			    <includes>
-					<include>**</include>
-				</includes>
-			</resource>
-			<!-- I really do not know why know a manual entry for src/main/resources is 
-			     necessary? It should be included following the Maven convention. -->
-			<resource>		
-				<filtering>false</filtering>
-				<directory>src/main/resources</directory>
-			    <includes>
-					<include>**</include>
-				</includes>
-			</resource>
-    </resources>
-    <!-- Resources End -->
-  	
-  	
-  	<plugins>
-        <!--  The Maven bundle plugin generates Meta-data required for OSGi  -->
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+	<properties>
+		<module.group>de.mxro.utils</module.group>      <!--  Maven groupId -->
+		<module.name>mxUtilities</module.name>          <!--  Maven artifactId -->
+		<module.version>0.0.4-SNAPSHOT</module.version> <!--  Maven artifact version -->
+		<module.description>General utility classes</module.description>
+		<module.url>http://www.mxro.de/</module.url>
+		<module.importedPackages>com.sun.org.apache.xml.internal.serialize;resolution:=optional,
+			*
+		</module.importedPackages>
+		<module.exportedContents></module.exportedContents>
+		<module.exportedPackages>de.mxro.filesystem,
+			de.mxro.filesystem.ext,
+			de.mxro.filesystem.v01,
+			de.mxro.string.filter,
+			de.mxro.utils,
+			de.mxro.utils.application,
+			de.mxro.utils.background,
+			de.mxro.utils.distributedtree,
+			de.mxro.utils.domain,
+			de.mxro.utils.domain.authentication,
+			de.mxro.utils.drm,
+			de.mxro.utils.gwt,
+			de.mxro.utils.history,
+			de.mxro.utils.log,
+			de.mxro.utils.progress	
+		</module.exportedPackages>
+		<module.embeddedDependencies>
+		</module.embeddedDependencies>
+		<module.embedTransitive>false
+		</module.embedTransitive>
+		<module.serviceDefinitions>
+		</module.serviceDefinitions>
+	</properties>
+
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>${module.group}</groupId>
+	<artifactId>${module.name}</artifactId>
+	<version>${module.version}</version>
+	<name>${module.name}</name>
+	<description>${module.description}</description>
+	<url>${module.url}</url>
+	<packaging>bundle</packaging>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- FOR BUNDLE MANAGEMENT -->
+			<!--  The Maven bundle plugin generates Meta-data required for OSGi  -->
+
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<unpackBundle>true</unpackBundle>
 					<instructions>
 						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${pom.version}</Bundle-Version>
-						<!-- <Embed-Dependency>*;scope=compile|runtime;inline=false
+						<Import-Package>${module.importedPackages}</Import-Package>
+						<Export-Package>${module.exportedPackages}</Export-Package>
+						<Service-Component>${module.serviceDefinitions}
+						</Service-Component>
+						<!-- <Embed-Dependency>${module.embeddedDependencies}
 						</Embed-Dependency>
-						<Embed-Directory>target/dependency</Embed-Directory>-->
-						<Import-Package>*,com.sun.org.apache.xml.internal.serialize;resolution:=optional</Import-Package>
-						<Export-Package>de.mxro.filesystem,
- de.mxro.filesystem.ext,
- de.mxro.filesystem.v01,
- de.mxro.string.filter,
- de.mxro.utils,
- de.mxro.utils.application,
- de.mxro.utils.background,
- de.mxro.utils.distributedtree,
- de.mxro.utils.domain,
- de.mxro.utils.domain.authentication,
- de.mxro.utils.drm,
- de.mxro.utils.gwt,
- de.mxro.utils.history,
- de.mxro.utils.log,
- de.mxro.utils.progress</Export-Package>
+						<Embed-Directory>target/dependency</Embed-Directory>
+						<Embed-Transitive>${module.embedTransitive}</Embed-Transitive>-->
+						<_exportcontents>${module.exportedContents}</_exportcontents>
 					</instructions>
 				</configuration>
 			</plugin>
 
+			<!-- FOR MAVEN ECLIPSE PLUGIN -->
+			<!--
+				Dependency Plugin used to copy the dependency JARs into the root
+				project folder. There the Maven eclipse plugin will add them to the
+				classpath of PDE projects.
+			-->
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
-
 				<executions>
-					<!--
-						This additional execution can extract all the JARs of the
-						dependencies
-					-->
-					<!-- <execution>
-						<id>unpack-dependencies</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-						<configuration>
-							<includeGroupIds>org.w3c.tidy</includeGroupIds>
-						</configuration>
-					</execution>-->
-
 					<execution>
 						<id>copy-dependencies</id>
 						<phase>process-sources</phase>
@@ -121,7 +104,9 @@
 				</executions>
 			</plugin>
 
-			<!--  Cleanup necessary because of PDE tweaks -->
+			<!--
+				Cleanup necessary because of PDE tweaks, clear the project directory
+			-->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.3</version>
@@ -137,8 +122,8 @@
 					</filesets>
 				</configuration>
 			</plugin>
-      
-      <!--
+
+			<!--
 				Keep the MANIFEST.MF used by eclipse in sync with the MANIFEST.MF
 				created by the maven bundle plugin
 			-->
@@ -159,38 +144,69 @@
 					</execution>
 				</executions>
 			</plugin>
-   <!--   <plugin>
-      	<groupId>org.apache.maven.plugins</groupId>
-      	<artifactId>maven-jar-plugin</artifactId>
-      	<configuration>
-      		<archive>
-      			<manifestFile>META-INF/MANIFEST.MF</manifestFile>
-      		</archive>
-        </configuration>
-      </plugin> -->
-         
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
-    
-  </build>
-  
-  <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Internal Releases</name>
-            <url>http://STF-6121-DSK06.com.auckland.ac.nz:8080/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Internal Snapshots</name>
-            <url>http://STF-6121-DSK06.com.auckland.ac.nz:8080/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-    
+
+		</plugins>
+
+		<!-- RESOURCES -->
+		<resources>
+			<!--
+				This entry makes sure that resources, which lie in the same package
+				as Java classes, are copied into the target. Often external
+				libraries require resources, which are loaded using
+				Class.getResource or Class.getResourceAsStream and which are in a
+				subpackage of the class. For instance, the NetBeans template for the
+				Swing Application Framework does so.
+			-->
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<!--
+				This entry makes sure component definitions for OSGi declarative
+				services are copied into the destination
+			-->
+			<resource>
+				<targetPath>OSGI-INF</targetPath>
+				<filtering>false</filtering>
+				<directory>OSGI-INF</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+			</resource>
+			<!--
+				I really do not know why know a manual entry for src/main/resources
+				is necessary? It should be included following the Maven convention.
+			-->
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+			</resource>
+		</resources>
+
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Internal Releases</name>
+			<url>http://STF-6121-DSK06.com.auckland.ac.nz:8080/nexus/content/repositories/releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Internal Snapshots</name>
+			<url>http://STF-6121-DSK06.com.auckland.ac.nz:8080/nexus/content/repositories/snapshots
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
