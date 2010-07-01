@@ -33,6 +33,7 @@ Export-Package: de.mxro.filesystem;uses:="de.mxro.utils,de.mxro.utils.log,de.mxr
  de.mxro.utils.gwt;uses:="de.mxro.utils.log",
  de.mxro.utils.history,
  de.mxro.utils.log,
+ de.mxro.utils.log.impl;uses:="de.mxro.utils.log,javax.swing,de.mxro.utils",
  de.mxro.utils.progress;uses:="javax.swing,de.mxro.utils.log"
 Built-By: mx
 Tool: Bnd-0.0.357
@@ -40,7 +41,7 @@ Bundle-Name: mxUtilities
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.6.0_20
 Bundle-Version: 0.0.4.SNAPSHOT
-Bnd-LastModified: 1277934195964
+Bnd-LastModified: 1277955295843
 Bundle-ManifestVersion: 2
 Bundle-Description: General utility classes
 Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=optional,
@@ -58,6 +59,7 @@ Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=optional,
  de.mxro.utils.gwt,
  de.mxro.utils.history,
  de.mxro.utils.log,
+ de.mxro.utils.log.impl,
  de.mxro.utils.progress,
  javax.swing,
  javax.swing.event,
