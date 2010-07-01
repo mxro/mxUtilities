@@ -23,12 +23,25 @@ Bundle-Version: 0.0.4.SNAPSHOT
 Bnd-LastModified: 1277934195964
 Bundle-ManifestVersion: 2
 Bundle-Description: General utility classes
-Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=
- optional,de.mxro.filesystem,de.mxro.filesystem.ext,de.mxro.filesystem
- .v01,de.mxro.string.filter,de.mxro.utils,de.mxro.utils.application,de
- .mxro.utils.background,de.mxro.utils.distributedtree,de.mxro.utils.do
- main,de.mxro.utils.domain.authentication,de.mxro.utils.drm,de.mxro.ut
- ils.gwt,de.mxro.utils.history,de.mxro.utils.log,de.mxro.utils.progres
- s,javax.swing,javax.swing.event,javax.swing.text,org.w3c.dom
+Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=optional,
+ de.mxro.filesystem,
+ de.mxro.filesystem.ext,
+ de.mxro.filesystem.v01,
+ de.mxro.string.filter,
+ de.mxro.utils,
+ de.mxro.utils.application,
+ de.mxro.utils.background,
+ de.mxro.utils.distributedtree,
+ de.mxro.utils.domain,
+ de.mxro.utils.domain.authentication,
+ de.mxro.utils.drm,
+ de.mxro.utils.gwt,
+ de.mxro.utils.history,
+ de.mxro.utils.log,
+ de.mxro.utils.progress,
+ javax.swing,
+ javax.swing.event,
+ javax.swing.text,
+ org.w3c.dom
 Bundle-SymbolicName: mxUtilities
 

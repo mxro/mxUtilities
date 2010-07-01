@@ -25,7 +25,8 @@
 			de.mxro.utils.gwt,
 			de.mxro.utils.history,
 			de.mxro.utils.log,
-			de.mxro.utils.progress	
+			de.mxro.utils.progress,
+			de.mxro.utils.log.impl	
 		</module.exportedPackages>
 		<module.embeddedDependencies>
 		</module.embeddedDependencies>
