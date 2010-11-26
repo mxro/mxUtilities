@@ -4,7 +4,7 @@ import java.util.Vector;
 
 /**
  * An Interface for classes that contain links
- * to other nodes or files
+ * to other nodes or files<br/>
  * 
  * Links can be transformed with
  * LinksInItemsTransformation 
