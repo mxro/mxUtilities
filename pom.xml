@@ -36,6 +36,13 @@
 		</module.serviceDefinitions>
 	</properties>
 
+	<dependencies>
+	<dependency>
+	<groupId>de.mxro.gtwutils</groupId>
+	<artifactId>mxGWTUtils</artifactId>
+	<version>[0.0.1,)</version>
+	</dependency>
+	</dependencies>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>${module.group}</groupId>

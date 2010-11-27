@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Vector;
 
+import mx.gwtutils.MxroGWTUtils;
+
 import de.mxro.utils.URI;
 import de.mxro.utils.URIImpl;
 import de.mxro.utils.Utils;
@@ -273,9 +275,9 @@ public class Folder extends FileSystemObject {
 	
 	public Folder forceFolder(URI uri) {
 		final String path = uri.getPath();
-		if (Utils.length(path, "/")==1)
+		if (MxroGWTUtils.length(path, "/")==1)
 			return this.forceFolder(path);
-		final Folder newFolder = this.forceFolder(Utils.firstElement(path, "/"));
+		final Folder newFolder = this.forceFolder(MxroGWTUtils.firstElement(path, "/"));
 		
 		if (newFolder == null) {
 			UserError.singelton.log("Folder.forceFolder: utility folder could not be created: "+uri.getPath(), UserError.Priority.HIGH);
@@ -325,16 +327,16 @@ public class Folder extends FileSystemObject {
 		try {
 			String add="";
 			int i=0;
-			if (Utils.getExtension(base).equals("")) {
+			if (MxroGWTUtils.getExtension(base).equals("")) {
 				while (this.get(new URIImpl(base+add))!=null) {
 					add = String.valueOf(++i);
 				}
 				return base+add;
 			} else {
-				while (this.get(new URIImpl(Utils.removeExtension(base)+add+"."+Utils.getExtension(base)))!=null) {
+				while (this.get(new URIImpl(MxroGWTUtils.removeExtension(base)+add+"."+MxroGWTUtils.getExtension(base)))!=null) {
 					add = String.valueOf(++i);
 				}
-				return Utils.removeExtension(base)+add+"."+Utils.getExtension(base);
+				return MxroGWTUtils.removeExtension(base)+add+"."+MxroGWTUtils.getExtension(base);
 			}
 			
 		} catch (final URISyntaxException e) {

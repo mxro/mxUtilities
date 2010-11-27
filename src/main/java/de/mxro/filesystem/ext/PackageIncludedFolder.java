@@ -7,6 +7,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.jar.JarEntry;
 
+import mx.gwtutils.MxroGWTUtils;
+
 import de.mxro.filesystem.FileSystemObject;
 import de.mxro.filesystem.Folder;
 import de.mxro.utils.URI;
@@ -31,7 +33,7 @@ public abstract class PackageIncludedFolder {
 			if (destURI.isAbsolute()) {
 				if (destURI.getFile() != null && destURI.getFile().exists()) {
 					UserError.singelton.log(this, "installTo: Tries to copy files from local file system. from file: "+destURI.toString(), UserError.Priority.INFORMATION);
-					if ( folder.importFile(destURI, Utils.lastElement(destURI.toString(), "/")) == null) {
+					if ( folder.importFile(destURI, MxroGWTUtils.lastElement(destURI.toString(), "/")) == null) {
 						UserError.singelton.log("PackageIncludedFolder: Could not import file: "+destURI);
 					}
 					return true;

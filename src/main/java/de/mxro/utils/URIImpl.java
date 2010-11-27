@@ -33,6 +33,8 @@ package de.mxro.utils;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 
+import mx.gwtutils.MxroGWTUtils;
+
 import de.mxro.utils.log.UserError;
 
 
@@ -76,7 +78,7 @@ public class URIImpl implements Serializable, Comparable, URI {
     		UserError.singelton.log(this, "changeExtension: cannot change extension of folder "+this.toString(), UserError.Priority.HIGH);
     		return URIImpl.create(this.toString());
     	}
-    	String newURI = de.mxro.utils.Utils.removeExtension(this.toString()) + newExtension;
+    	String newURI = mx.gwtutils.MxroGWTUtils.removeExtension(this.toString()) + newExtension;
     	URI res;
 		try {
 			return new URIImpl(newURI);
@@ -149,14 +151,14 @@ public class URIImpl implements Serializable, Comparable, URI {
 	 * @see de.mxro.gwt.URIInterface#getLastElement()
 	 */
     public String getLastElement() {
-    	return de.mxro.utils.Utils.lastElement(this.getPath(), "/");
+    	return mx.gwtutils.MxroGWTUtils.lastElement(this.getPath(), "/");
     }
     
     /* (non-Javadoc)
 	 * @see de.mxro.gwt.URIInterface#getElement(int)
 	 */
     public String getElement(int index) {
-    	return de.mxro.utils.Utils.nthElement(this.getPath(), "/", index);
+    	return mx.gwtutils.MxroGWTUtils.nthElement(this.getPath(), "/", index);
     }
     
     /* (non-Javadoc)
@@ -655,7 +657,7 @@ public class URIImpl implements Serializable, Comparable, URI {
 	
 	public URI getOwner() {
 		String uriAsString = this.toString();
-		String uriOfOwner = Utils.removeLastElement(uriAsString, "/");
+		String uriOfOwner = MxroGWTUtils.removeLastElement(uriAsString, "/");
 		
 		return URIImpl.create(uriOfOwner);
 	}

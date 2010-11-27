@@ -30,6 +30,8 @@ import javax.swing.KeyStroke;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.JTextComponent;
 
+import mx.gwtutils.MxroGWTUtils;
+
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 import de.mxro.filesystem.File;
@@ -244,9 +246,9 @@ public class Utils {
 			UserError.singelton.log("Utils.copyJarToFile: Destination must be a folder.", UserError.Priority.HIGH);
 			return false;
 		}
-		final Folder newFolder = ((Folder) dest).forceFolder(Utils.lastElement(entry.getName(), "/"));
+		final Folder newFolder = ((Folder) dest).forceFolder(MxroGWTUtils.lastElement(entry.getName(), "/"));
 		if (newFolder == null) {
-			UserError.singelton.log("Utils.copyJarToFile: Could not create folder "+Utils.lastElement(entry.getName(), "/"), UserError.Priority.HIGH);
+			UserError.singelton.log("Utils.copyJarToFile: Could not create folder "+MxroGWTUtils.lastElement(entry.getName(), "/"), UserError.Priority.HIGH);
 			return false;
 		}
 		
@@ -270,15 +272,15 @@ public class Utils {
 					Folder parent = null;
 					
 						//System.out.println("create parent folder: "+Utils.removeLastElement(oneE.getName(), "/")); 
-						parent = newFolder.forceFolder(URIImpl.create(Utils.removeLastElement(remainingName, "/")));
+						parent = newFolder.forceFolder(URIImpl.create(MxroGWTUtils.removeLastElement(remainingName, "/")));
 					
 					if (parent == null) {
-						UserError.singelton.log("Utils.copyJarToFile: Could not create Folder "+Utils.removeLastElement(remainingName, "/"), UserError.Priority.LOW);
+						UserError.singelton.log("Utils.copyJarToFile: Could not create Folder "+MxroGWTUtils.removeLastElement(remainingName, "/"), UserError.Priority.LOW);
 						res = false;
 					} else {
-						final File newFile = parent.forceFile(Utils.lastElement(remainingName, "/"));
+						final File newFile = parent.forceFile(MxroGWTUtils.lastElement(remainingName, "/"));
 						if (newFile == null) {
-							UserError.singelton.log("Utils.copyJarToFile: Could not create File "+Utils.lastElement(remainingName, "/"), UserError.Priority.LOW);
+							UserError.singelton.log("Utils.copyJarToFile: Could not create File "+MxroGWTUtils.lastElement(remainingName, "/"), UserError.Priority.LOW);
 							res = false;
 						} else {
 							streamCopy((newFile).getOutputStream(), file.getInputStream(oneE));
@@ -393,48 +395,6 @@ public class Utils {
 		return res;
 	}
 	
-	/**
-	 * from http://stackoverflow.com/questions/941272/how-do-i-trim-a-file-extension-from-a-string-in-java
-	 * 
-	 * @param s
-	 * @return
-	 */
-	public static String removeExtension(String s) {
-
-	    String separator = System.getProperty("file.separator");
-	    String filename;
-
-	    // Remove the path upto the filename.
-	    int lastSeparatorIndex = s.lastIndexOf(separator);
-	    if (lastSeparatorIndex == -1) {
-	        filename = s;
-	    } else {
-	        filename = s.substring(lastSeparatorIndex + 1);
-	    }
-
-	    // Remove the extension.
-	    int extensionIndex = filename.lastIndexOf(".");
-	    if (extensionIndex == -1)
-	        return s;
-
-	    return s.substring(0, lastSeparatorIndex+1) + filename.substring(0, extensionIndex);
-	}
-
-	
-/*	public static String removeExtension(String path) {
-		final int dotPos = path.lastIndexOf(".");
-		if (dotPos>0)
-			return path.substring(0, dotPos);
-		return path;
-	}*/
-	
-	public static String getExtension(String path) {
-		final int dotPos = path.lastIndexOf(".");
-		if (dotPos>0)
-			return path.substring(dotPos+1);
-		return "";
-	} 
-	
 	public static String stringArrayToString(String[] sa) {
 		String res = "";
 		if (sa.length > 0) {
@@ -541,53 +501,8 @@ public class Utils {
 			
 	}
 	
-	public static String nthElement(String s, String separator, int index) {
-		final String[] list = s.split(separator);
-		if (list.length <= 0)
-			return null;
-		if (index >= list.length)
-			throw new IndexOutOfBoundsException("Could not get element "+index+" in "+s);
-		return list[list.length-1];
-	}
-	
-
-	public static String firstElement(String s, String separator) {
-		final String[] list = s.split(separator);
-		if (list.length == 0) {
-			UserError.singelton.log("mxro.Utils: String used for firstElement() is empty.", UserError.Priority.NORMAL);
-			return null;
-		}
-		return list[0];
-	}
-	
-	public static String lastElement(String s, String separator) {
-		final String[] list = s.split(separator);
-		if (list.length <= 0)
-			return null;
-		return list[list.length-1];
-	}
-	
-	public static String removeLastElement(String s, String separator) {
-		if (s.equals("")) return null;
-		
-		final String[] list = s.split(separator);
-		if (list.length <= 0)
-			return null;
-		String res = ( s.charAt(0)=='/' ? "/" : "" );
-		for (int i=0;i<list.length-1;i++) {
-			res += list[i]+"/";
-		}
-		
-		return res;
-	}
-	
 	public static String removeFirstElement(String s, String separator) {
-		return de.mxro.utils.gwt.MxroGWTUtils.removeFirstElement(s, separator);
-	}
-	
-	public static int length(String s, String separator) {
-		final String[] list = s.split(separator);
-		return list.length;
+		return mx.gwtutils.MxroGWTUtils.removeFirstElement(s, separator);
 	}
 	
 	public static void assertField(final String fieldname, final Class inclass) {
@@ -620,8 +535,6 @@ public class Utils {
 	
 		return UNKNOWN;
 	}
-	
-	
 	
 	public static String domToString(org.w3c.dom.Document doc) {
 		final XMLSerializer serializer = new XMLSerializer();
