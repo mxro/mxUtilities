@@ -31,8 +31,10 @@ public class VirtualRealAddressMapper implements AddressMapper {
 			{
 			relativizedByVirtualURI = uri;
 		}
-			
+		
+		//System.out.println("realUri: "+realURI);
 		URI resolvedByRealURI = realURI.resolve(relativizedByVirtualURI);
+		//System.out.println("Resolved: "+resolvedByRealURI);
 		return resolvedByRealURI;
 	}
 
@@ -49,7 +51,7 @@ public class VirtualRealAddressMapper implements AddressMapper {
 
 	public URI demap(URI uri) {
 		
-		return inverse.map(uri);
+		return getInverse().map(uri);
 	}
 
 

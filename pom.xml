@@ -7,7 +7,10 @@
 		<module.version>0.0.4-SNAPSHOT</module.version> <!--  Maven artifact version -->
 		<module.description>General utility classes</module.description>
 		<module.url>http://www.mxro.de/</module.url>
-		<module.importedPackages>com.sun.org.apache.xml.internal.serialize;resolution:=optional,
+		<module.importedPackages>
+		org.junit;resolution:=optional,
+		org.hamcrest;version="0.0.3";resolution:=optional,
+		com.sun.org.apache.xml.internal.serialize;resolution:=optional,
 			*
 		</module.importedPackages>
 		<module.exportedContents></module.exportedContents>
@@ -42,6 +45,14 @@
 	<artifactId>mxGWTUtils</artifactId>
 	<version>[0.0.1,)</version>
 	</dependency>
+	
+	<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+	
 	</dependencies>
 
 	<modelVersion>4.0.0</modelVersion>

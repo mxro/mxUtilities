@@ -101,7 +101,8 @@ public class LocalFileSystem implements FileSystem {
 	
 	public Folder getFolder(URI uri) {
 		
-		final java.io.File file = uri.getFile();	
+		final java.io.File file = uri.getFile();
+		//System.out.println("XXXXXXXXXXXX "+file);
 		if (file != null && file.exists() && file.isDirectory()) {
 			try {
 				return FileSystemObject.newLocalRootFolder(URIImpl.create(Utils.assertAtEnd(URIImpl.fromFile(uri.getFile().getAbsoluteFile()).toString(), '/')));

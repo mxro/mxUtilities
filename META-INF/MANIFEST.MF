@@ -21,7 +21,7 @@ Bundle-Name: mxUtilities
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.6.0_22
 Bundle-Version: 0.0.4.SNAPSHOT
-Bnd-LastModified: 1290824821070
+Bnd-LastModified: 1291338970755
 Bundle-ManifestVersion: 2
 Bundle-Description: General utility classes
 Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=
@@ -31,6 +31,7 @@ Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=
  main,de.mxro.utils.domain.authentication,de.mxro.utils.drm,de.mxro.ut
  ils.gwt,de.mxro.utils.history,de.mxro.utils.log,de.mxro.utils.log.imp
  l,de.mxro.utils.progress,javax.swing,javax.swing.event,javax.swing.te
- xt,mx.gwtutils,org.w3c.dom
+ xt,mx.gwtutils,org.hamcrest;version="0.0.3";resolution:=optional,org.
+ junit;resolution:=optional,org.w3c.dom
 Bundle-SymbolicName: mxUtilities
 
