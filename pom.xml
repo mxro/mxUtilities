@@ -2,34 +2,21 @@
 <project>
 
 	<properties>
-		<module.group>de.mxro.utils</module.group>      <!--  Maven groupId -->
-		<module.name>mxUtilities</module.name>          <!--  Maven artifactId -->
-		<module.version>0.0.4-SNAPSHOT</module.version> <!--  Maven artifact version -->
+		<module.group>de.mxro.utils</module.group>      <!-- Maven groupId -->
+		<module.name>mxUtilities</module.name>          <!-- Maven artifactId -->
+		<module.version>0.0.4-SNAPSHOT</module.version> <!-- Maven artifact version -->
 		<module.description>General utility classes</module.description>
 		<module.url>http://www.mxro.de/</module.url>
 		<module.importedPackages>
-		org.junit;resolution:=optional,
-		org.hamcrest;version="0.0.3";resolution:=optional,
-		com.sun.org.apache.xml.internal.serialize;resolution:=optional,
+			org.junit;resolution:=optional,
+			org.hamcrest;version="0.0.3";resolution:=optional,
+			com.sun.org.apache.xml.internal.serialize;resolution:=optional,
 			*
 		</module.importedPackages>
 		<module.exportedContents></module.exportedContents>
-		<module.exportedPackages>de.mxro.filesystem,
-			de.mxro.filesystem.ext,
-			de.mxro.filesystem.v01,
-			de.mxro.string.filter,
-			de.mxro.utils,
-			de.mxro.utils.application,
-			de.mxro.utils.background,
-			de.mxro.utils.distributedtree,
-			de.mxro.utils.domain,
-			de.mxro.utils.domain.authentication,
-			de.mxro.utils.drm,
-			de.mxro.utils.gwt,
-			de.mxro.utils.history,
-			de.mxro.utils.log,
-			de.mxro.utils.progress,
-			de.mxro.utils.log.impl	
+		<module.exportedPackages>de.mxro.filesystem*,
+			de.mxro.string*,
+			de.mxro.utils*
 		</module.exportedPackages>
 		<module.embeddedDependencies>
 		</module.embeddedDependencies>
@@ -40,19 +27,19 @@
 	</properties>
 
 	<dependencies>
-	<dependency>
-	<groupId>de.mxro.gtwutils</groupId>
-	<artifactId>mxGWTUtils</artifactId>
-	<version>[0.0.1,)</version>
-	</dependency>
-	
-	<dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.4</version>
-            <scope>test</scope>
-        </dependency>
-	
+		<dependency>
+			<groupId>de.mxro.gtwutils</groupId>
+			<artifactId>mxGWTUtils</artifactId>
+			<version>[0.0.1,)</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -75,7 +62,7 @@
 				</configuration>
 			</plugin>
 			<!-- FOR BUNDLE MANAGEMENT -->
-			<!--  The Maven bundle plugin generates Meta-data required for OSGi  -->
+			<!-- The Maven bundle plugin generates Meta-data required for OSGi -->
 
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -89,21 +76,16 @@
 						<Export-Package>${module.exportedPackages}</Export-Package>
 						<Service-Component>${module.serviceDefinitions}
 						</Service-Component>
-						<!-- <Embed-Dependency>${module.embeddedDependencies}
-						</Embed-Dependency>
-						<Embed-Directory>target/dependency</Embed-Directory>
-						<Embed-Transitive>${module.embedTransitive}</Embed-Transitive>-->
+						
 						<_exportcontents>${module.exportedContents}</_exportcontents>
 					</instructions>
 				</configuration>
 			</plugin>
 
 			<!-- FOR MAVEN ECLIPSE PLUGIN -->
-			<!--
-				Dependency Plugin used to copy the dependency JARs into the root
-				project folder. There the Maven eclipse plugin will add them to the
-				classpath of PDE projects.
-			-->
+			<!-- Dependency Plugin used to copy the dependency JARs into the root 
+				project folder. There the Maven eclipse plugin will add them to the classpath 
+				of PDE projects. -->
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
@@ -123,9 +105,7 @@
 				</executions>
 			</plugin>
 
-			<!--
-				Cleanup necessary because of PDE tweaks, clear the project directory
-			-->
+			<!-- Cleanup necessary because of PDE tweaks, clear the project directory -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.3</version>
@@ -142,10 +122,8 @@
 				</configuration>
 			</plugin>
 
-			<!--
-				Keep the MANIFEST.MF used by eclipse in sync with the MANIFEST.MF
-				created by the maven bundle plugin
-			-->
+			<!-- Keep the MANIFEST.MF used by eclipse in sync with the MANIFEST.MF 
+				created by the maven bundle plugin -->
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
@@ -168,14 +146,11 @@
 
 		<!-- RESOURCES -->
 		<resources>
-			<!--
-				This entry makes sure that resources, which lie in the same package
-				as Java classes, are copied into the target. Often external
-				libraries require resources, which are loaded using
-				Class.getResource or Class.getResourceAsStream and which are in a
-				subpackage of the class. For instance, the NetBeans template for the
-				Swing Application Framework does so.
-			-->
+			<!-- This entry makes sure that resources, which lie in the same package 
+				as Java classes, are copied into the target. Often external libraries require 
+				resources, which are loaded using Class.getResource or Class.getResourceAsStream 
+				and which are in a subpackage of the class. For instance, the NetBeans template 
+				for the Swing Application Framework does so. -->
 			<resource>
 				<filtering>false</filtering>
 				<directory>src/main/java</directory>
@@ -186,10 +161,8 @@
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
-			<!--
-				This entry makes sure component definitions for OSGi declarative
-				services are copied into the destination
-			-->
+			<!-- This entry makes sure component definitions for OSGi declarative 
+				services are copied into the destination -->
 			<resource>
 				<targetPath>OSGI-INF</targetPath>
 				<filtering>false</filtering>
@@ -198,10 +171,8 @@
 					<include>**</include>
 				</includes>
 			</resource>
-			<!--
-				I really do not know why know a manual entry for src/main/resources
-				is necessary? It should be included following the Maven convention.
-			-->
+			<!-- I really do not know why know a manual entry for src/main/resources 
+				is necessary? It should be included following the Maven convention. -->
 			<resource>
 				<filtering>false</filtering>
 				<directory>src/main/resources</directory>
