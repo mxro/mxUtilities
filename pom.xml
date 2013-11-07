@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
 
+<groupId>de.mxro.utils</groupId>
+	<artifactId>mxUtilities</artifactId>
+	<version>0.0.4-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
+
 	<properties>
-		<module.group>de.mxro.utils</module.group>      <!-- Maven groupId -->
-		<module.name>mxUtilities</module.name>          <!-- Maven artifactId -->
-		<module.version>0.0.4-SNAPSHOT</module.version> <!-- Maven artifact version -->
+		
 		<module.description>General utility classes</module.description>
 		<module.url>http://www.mxro.de/</module.url>
 		<module.importedPackages>
@@ -43,10 +46,7 @@
 	</dependencies>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>${module.group}</groupId>
-	<artifactId>${module.name}</artifactId>
-	<version>${module.version}</version>
-	<name>${module.name}</name>
+	
 	<description>${module.description}</description>
 	<url>${module.url}</url>
 	<packaging>bundle</packaging>
@@ -87,23 +87,7 @@
 				project folder. There the Maven eclipse plugin will add them to the classpath 
 				of PDE projects. -->
 			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}</outputDirectory>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>false</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+				<artifactId>maven-dependency-plugin</artifactId></plugin>
 
 			<!-- Cleanup necessary because of PDE tweaks, clear the project directory -->
 			<plugin>
@@ -182,21 +166,8 @@
 			</resource>
 		</resources>
 
-	</build>
+	<extensions><extension><groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh-external</artifactId><version>2.5</version></extension><extension><groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh</artifactId><version>2.5</version></extension></extensions></build>
 
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<name>Internal Releases</name>
-			<url>http://internal1.nxweb.de:8080/nexus/content/repositories/releases
-			</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Internal Snapshots</name>
-			<url>http://internal1.nxweb.de:8080/nexus/content/repositories/snapshots
-			</url>
-		</snapshotRepository>
-	</distributionManagement>
+	<distributionManagement><repository><id>appjangle-releases</id><url>${repos.appjangle-releases}</url></repository><snapshotRepository><id>mvn1-appjangle</id><url>${repos.mvn1-appjangle}</url></snapshotRepository></distributionManagement>
 
 </project>
