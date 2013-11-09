@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<groupId>de.mxro.utils</groupId>
+	<groupId>de.mxro.utils</groupId>
 	<artifactId>mxUtilities</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 
 	<properties>
-		
+
 		<module.description>General utility classes</module.description>
 		<module.url>http://www.mxro.de/</module.url>
 		<module.importedPackages>
@@ -46,7 +47,7 @@
 	</dependencies>
 
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<description>${module.description}</description>
 	<url>${module.url}</url>
 	<packaging>bundle</packaging>
@@ -76,7 +77,7 @@
 						<Export-Package>${module.exportedPackages}</Export-Package>
 						<Service-Component>${module.serviceDefinitions}
 						</Service-Component>
-						
+
 						<_exportcontents>${module.exportedContents}</_exportcontents>
 					</instructions>
 				</configuration>
@@ -87,7 +88,8 @@
 				project folder. There the Maven eclipse plugin will add them to the classpath 
 				of PDE projects. -->
 			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId></plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
 
 			<!-- Cleanup necessary because of PDE tweaks, clear the project directory -->
 			<plugin>
@@ -166,8 +168,29 @@
 			</resource>
 		</resources>
 
-	<extensions><extension><groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh-external</artifactId><version>2.5</version></extension><extension><groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh</artifactId><version>2.5</version></extension></extensions></build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>2.5</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.5</version>
+			</extension>
+		</extensions>
+	</build>
 
-	<distributionManagement><repository><id>appjangle-releases</id><url>${repos.appjangle-releases}</url></repository><snapshotRepository><id>mvn1-appjangle</id><url>${repos.mvn1-appjangle}</url></snapshotRepository></distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>appjangle-releases</id>
+			<url>${repos.appjangle-releases}</url>
+		</repository>
+		<snapshotRepository>
+			<id>mvn1-appjangle</id>
+			<url>${repos.mvn1-appjangle}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 </project>
