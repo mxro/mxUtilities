@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1383970043745
+Bnd-LastModified: 1383970115831
 Build-Jdk: 1.7.0_25
 Built-By: adminuser
 Bundle-Description: General utility classes
@@ -26,6 +26,6 @@ Export-Package: de.mxro.filesystem;version="0.0.4.SNAPSHOT";uses:="de.mx
  ,de.mxro.utils.progress;version="0.0.4.SNAPSHOT";uses:="javax.swing"
 Import-Package: com.sun.org.apache.xml.internal.serialize;resolution:=op
  tional,javax.swing,javax.swing.event,javax.swing.text,mx.gwtutils;versi
- on="[0.0,1)",org.w3c.dom,org.junit;resolution:=optional,org.hamcrest;ve
- rsion="0.0.3";resolution:=optional
+ on="[0.0,1)",org.w3c.dom,org.hamcrest;version="0.0.3";resolution:=optio
+ nal,org.junit;resolution:=optional
 Tool: Bnd-2.1.0.20130426-122213
